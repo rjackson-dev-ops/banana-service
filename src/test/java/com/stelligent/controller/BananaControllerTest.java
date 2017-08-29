@@ -45,7 +45,7 @@ public class BananaControllerTest {
     given(this.bananaRepository.findAll())
             .willReturn(new ArrayList<>());
 
-    this.mvc.perform(get("/bananas")
+    this.mvc.perform(get("/bananas-rjack")
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$", hasSize(0)));
@@ -61,18 +61,18 @@ public class BananaControllerTest {
     given(this.bananaRepository.findAll())
             .willReturn(bananaList);
 
-    this.mvc.perform(get("/bananas")
+    this.mvc.perform(get("/bananas-rjack")
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$", hasSize(3)));
 
-    this.mvc.perform(get("/bananas")
+    this.mvc.perform(get("/bananas-rjack")
             .param("peeled","true")
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$", hasSize(2)));
 
-    this.mvc.perform(get("/bananas")
+    this.mvc.perform(get("/bananas-rjack")
             .param("pickedAfter",LocalDateTime.now().minusHours(1).toString())
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
@@ -84,18 +84,18 @@ public class BananaControllerTest {
     Banana b = newBanana(2,true,LocalDateTime.now());
     given(this.bananaRepository.findOne(2L)).willReturn(b);
 
-    this.mvc.perform(get("/bananas/2")
+    this.mvc.perform(get("/bananas-rjack/2")
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.peeled", is(true)))
-            .andExpect(jsonPath("$._links.self.href", is("http://localhost/bananas/2")));
+            .andExpect(jsonPath("$._links.self.href", is("http://localhost/bananas-rjack/2")));
   }
 
   @Test
   public void testGetOneShouldReturn404() throws Exception {
     given(this.bananaRepository.findOne(2L)).willReturn(null);
 
-    this.mvc.perform(get("/bananas/2")
+    this.mvc.perform(get("/bananas-rjack/2")
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
   }
@@ -105,13 +105,13 @@ public class BananaControllerTest {
     Banana b = newBanana(20,true,LocalDateTime.now());
     given(this.bananaRepository.save(b)).willReturn(b);
 
-    this.mvc.perform(post("/bananas")
+    this.mvc.perform(post("/bananas-rjack")
             .contentType(MediaType.APPLICATION_JSON)
             .content(convertObjectToJsonBytes(b))
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.peeled", is(true)))
-            .andExpect(jsonPath("$._links.self.href", is("http://localhost/bananas/20")));
+            .andExpect(jsonPath("$._links.self.href", is("http://localhost/bananas-rjack/20")));
   }
 
   @Test
@@ -120,13 +120,13 @@ public class BananaControllerTest {
     given(this.bananaRepository.findOne(2L)).willReturn(b);
     given(this.bananaRepository.save(b)).willReturn(b);
 
-    this.mvc.perform(put("/bananas/2")
+    this.mvc.perform(put("/bananas-rjack/2")
             .contentType(MediaType.APPLICATION_JSON)
             .content(convertObjectToJsonBytes(b))
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.peeled", is(true)))
-            .andExpect(jsonPath("$._links.self.href", is("http://localhost/bananas/2")));
+            .andExpect(jsonPath("$._links.self.href", is("http://localhost/bananas-rjack/2")));
   }
 
   @Test
@@ -134,7 +134,7 @@ public class BananaControllerTest {
     Banana b = newBanana(2,true,LocalDateTime.now());
     given(this.bananaRepository.findOne(2L)).willReturn(null);
 
-    this.mvc.perform(put("/bananas/2")
+    this.mvc.perform(put("/bananas-rjack/2")
             .contentType(MediaType.APPLICATION_JSON)
             .content(convertObjectToJsonBytes(b))
             .accept(MediaType.APPLICATION_JSON))
@@ -147,13 +147,13 @@ public class BananaControllerTest {
     given(this.bananaRepository.findOne(2L)).willReturn(b);
     given(this.bananaRepository.save(b)).willReturn(b);
 
-    this.mvc.perform(put("/bananas/2")
+    this.mvc.perform(put("/bananas-rjack/2")
             .contentType(MediaType.APPLICATION_JSON)
             .content(convertObjectToJsonBytes(b))
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.peeled", is(true)))
-            .andExpect(jsonPath("$._links.self.href", is("http://localhost/bananas/2")));
+            .andExpect(jsonPath("$._links.self.href", is("http://localhost/bananas-rjack/2")));
   }
 
   @Test
@@ -161,7 +161,7 @@ public class BananaControllerTest {
     Banana b = newBanana(2,true,LocalDateTime.now());
     given(this.bananaRepository.findOne(2L)).willReturn(null);
 
-    this.mvc.perform(patch("/bananas/2")
+    this.mvc.perform(patch("/bananas-rjack/2")
             .contentType(MediaType.APPLICATION_JSON)
             .content(convertObjectToJsonBytes(b))
             .accept(MediaType.APPLICATION_JSON))
@@ -173,7 +173,7 @@ public class BananaControllerTest {
     Banana b = newBanana(2,true,LocalDateTime.now());
     given(this.bananaRepository.findOne(2L)).willReturn(b);
 
-    this.mvc.perform(delete("/bananas/2")
+    this.mvc.perform(delete("/bananas-rjack/2")
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
 
@@ -184,7 +184,7 @@ public class BananaControllerTest {
   public void testDeleteOneShouldReturn404() throws Exception {
     given(this.bananaRepository.findOne(2L)).willReturn(null);
 
-    this.mvc.perform(delete("/bananas/2")
+    this.mvc.perform(delete("/bananas-rjack/2")
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
   }

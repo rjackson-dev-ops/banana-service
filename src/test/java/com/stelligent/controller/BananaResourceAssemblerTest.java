@@ -56,6 +56,6 @@ public class BananaResourceAssemblerTest {
     List<Link> links = bananaResource.getLinks();
     Assert.assertEquals("links size",1,links.size());
     Assert.assertEquals("links rel","self",links.get(0).getRel());
-    Assert.assertEquals("links href","http://localhost/bananas/100",links.get(0).getHref());
+    Assert.assertEquals("links href","http://localhost/bananas-rjack/100",links.get(0).getHref());
   }
 }
