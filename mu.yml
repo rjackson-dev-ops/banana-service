@@ -1,6 +1,6 @@
 environments:
-- name: dev-rjack
-- name: production-rjack
+- name: acceptance
+- name: production
 service:
   name: banana-service
   port: 8080
