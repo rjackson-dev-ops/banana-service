@@ -28,7 +28,7 @@
         }
       ],
       "request": {
-        "url": "{{BASE_URL}}/bananas  ",
+        "url": "{{BASE_URL}}/bananas-rjack  ",
         "method": "POST",
         "header": [
           {
@@ -61,7 +61,7 @@
         }
       ],
       "request": {
-        "url": "{{BASE_URL}}/bananas  ",
+        "url": "{{BASE_URL}}/bananas-rjack  ",
         "method": "GET",
         "header": [
           {
